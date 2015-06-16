@@ -41,6 +41,8 @@ public class GreeterTest {
   public static JavaArchive createDeployment() {
     return ShrinkWrap.create(JavaArchive.class)
         .addClasses(Greeter.class, PhraseBuilder.class, DummyInterceptor.class)
+        .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
+        .addAsResource("logging.properties", "META-INF/logging.properties")
         .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
   }
 

@@ -3,17 +3,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hextremelabs</groupId>
-  <artifactId>hellomaven</artifactId>
+  <artifactId>MavenArquillianDemo</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
+  <scm>
+    <connection>scm:git:https://github.com/oluwasayo/MavenArquillianDemo.git</connection>
+    <url>https://github.com/oluwasayo/MavenArquillianDemo.git</url>
+  </scm>
 
-  <name>hellomaven</name>
+  <name>MavenArquillianDemo</name>
 
   <properties>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-    
+
   <dependencies>
     <dependency>
       <groupId>org.jboss.spec</groupId>
@@ -22,14 +26,21 @@
       <type>pom</type>
       <scope>provided</scope>
     </dependency>
-        
+
+    <!--    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jpamodelgen</artifactId>
+      <version>1.2.0.Final</version>
+      <scope>provided</scope>
+    </dependency>-->
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
-    
+
     <!-- JUnit Container Implementation for the Arquillian Project -->
     <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
@@ -42,21 +53,21 @@
       <artifactId>arquillian-protocol-servlet</artifactId>
       <scope>test</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>org.jboss.arquillian.container</groupId>
       <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
       <version>1.0.0.CR3</version>
       <scope>test</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>org.jboss.weld</groupId>
       <artifactId>weld-core</artifactId>
       <version>1.1.5.Final</version>
       <scope>test</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
@@ -94,6 +105,14 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.17</version>
+        <configuration>
+          <systemProperties>
+            <property>
+              <name>java.util.logging.manager</name>
+              <value>org.jboss.logmanager.LogManager</value>
+            </property>
+          </systemProperties>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -101,7 +120,7 @@
         <version>2.3</version>
         <configuration>
           <failOnMissingWebXml>false</failOnMissingWebXml>
-          <warName>${artifactId}-${version}-${scmBranch}-${buildNumber}</warName>
+          <warName>${project.artifactId}-${project.version}-${scmBranch}-${buildNumber}</warName>
         </configuration>
       </plugin>
       <plugin>
