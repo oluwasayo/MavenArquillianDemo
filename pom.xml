@@ -62,6 +62,13 @@
     </dependency>
 
     <dependency>
+      <groupId>org.jboss.arquillian.extension</groupId>
+      <artifactId>arquillian-persistence-dbunit</artifactId>
+      <version>1.0.0.Alpha7</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>org.jboss.weld</groupId>
       <artifactId>weld-core</artifactId>
       <version>1.1.5.Final</version>
@@ -105,14 +112,6 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.17</version>
-        <!--        <configuration>
-          <systemProperties>
-            <property>
-              <name>java.util.logging.manager</name>
-              <value>org.jboss.logmanager.LogManager</value>
-            </property>
-          </systemProperties>
-        </configuration>-->
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -161,11 +160,20 @@
           </execution>
         </executions>
         <configuration>
-          <doCheck>true</doCheck>
-          <doUpdate>true</doUpdate>
+          <doCheck>false</doCheck>
+          <doUpdate>false</doUpdate>
           <shortRevisionLength>6</shortRevisionLength>
         </configuration>
       </plugin>
     </plugins>
+
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+      <!--      <testResource>
+        <directory>src/test/resources-glassfish-embedded</directory>
+      </testResource>-->
+    </testResources>
   </build>
 </project>
